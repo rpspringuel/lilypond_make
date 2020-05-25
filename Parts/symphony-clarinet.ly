@@ -1,5 +1,5 @@
 \include "../symphonyDefs.ily"
-\include "../Notes/oboe.ily"
+\include "../Notes/clarinet.ily"
 
 \score {
     \new Staff = "Staff_clarinet" \with {

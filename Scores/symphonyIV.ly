@@ -1,7 +1,7 @@
 \include "../symphonyDefs.ily"
 \include "../Notes/cello.ily"
 \include "../Notes/horn.ily"
-\include "../Notes/oboe.ily"
+\include "../Notes/clarinet.ily"
 \include "../Notes/viola.ily"
 \include "../Notes/violinOne.ily"
 \include "../Notes/violinTwo.ily"

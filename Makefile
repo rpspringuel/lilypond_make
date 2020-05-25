@@ -1,10 +1,8 @@
 # the name stem of the output files
 piece = symphony
-# determine how many processors are present
-CPU_CORES=`cat /proc/cpuinfo | grep -m1 "cpu cores" | sed s/".*: "//`
 # The command to run lilypond
 LILY_CMD = lilypond -ddelete-intermediate-files \
-                    -dno-point-and-click -djob-count=$(CPU_CORES)
+                    -dno-point-and-click
 
 # The suffixes used in this Makefile.
 .SUFFIXES: .ly .ily .pdf .midi
@@ -22,18 +20,14 @@ VPATH = \
 # The .pdf output files are put into the `PDF' subdirectory, and the
 # .midi files go into the `MIDI' subdirectory.
 %.pdf %.midi: %.ly
-        $(LILY_CMD) $<; \           # this line begins with a tab
-        if test -f "$*.pdf"; then \
-            mv "$*.pdf" PDF/; \
-        fi; \
-        if test -f "$*.midi"; then \
-            mv "$*.midi" MIDI/; \
-        fi
+	$(LILY_CMD) $<
+	mv "$*.pdf" PDF/
+	mv "$*.midi" MIDI/
 
 notes = \
   cello.ily \
   horn.ily \
-  oboe.ily \
+  clarinet.ily \
   viola.ily \
   violinOne.ily \
   violinTwo.ily
@@ -50,7 +44,7 @@ $(piece).pdf: $(piece).ly $(notes)
 # The dependencies of the parts.
 $(piece)-cello.pdf: $(piece)-cello.ly cello.ily
 $(piece)-horn.pdf: $(piece)-horn.ly horn.ily
-$(piece)-oboes.pdf: $(piece)-oboes.ly oboe.ily
+$(piece)-clarinet.pdf: $(piece)-clarinet.ly clarinet.ily
 $(piece)-viola.pdf: $(piece)-viola.ly viola.ily
 $(piece)-violinOne.pdf: $(piece)-violinOne.ly violinOne.ily
 $(piece)-violinTwo.pdf: $(piece)-violinTwo.ly violinTwo.ily
@@ -68,7 +62,7 @@ parts: $(piece)-cello.pdf \
        $(piece)-violinOne.pdf \
        $(piece)-violinTwo.pdf \
        $(piece)-viola.pdf \
-       $(piece)-oboes.pdf \
+       $(piece)-clarinet.pdf \
        $(piece)-horn.pdf
 
 # Type `make movements' to generate files for the
@@ -80,9 +74,3 @@ movements: $(piece)I.pdf \
            $(piece)IV.pdf
 
 all: score parts movements
-
-archive:
-        tar -cvvf stamitz.tar \       # this line begins with a tab
-        --exclude=*pdf --exclude=*~ \
-        --exclude=*midi --exclude=*.tar \
-        ../Stamitz/*
