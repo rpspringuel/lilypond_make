@@ -19,10 +19,16 @@ VPATH = \
 # The pattern rule to create PDF and MIDI files from a LY input file.
 # The .pdf output files are put into the `PDF' subdirectory, and the
 # .midi files go into the `MIDI' subdirectory.
-%.pdf %.midi: %.ly
+%.pdf %.midi &: %.ly | pdf_dir midi_dir
 	$(LILY_CMD) $<
 	mv "$*.pdf" PDF/
 	mv "$*.midi" MIDI/
+
+pdf_dir :
+	-mkdir PDF
+
+midi_dir :
+	-mkdir MIDI
 
 notes = \
   cello.ily \
