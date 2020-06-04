@@ -61,7 +61,7 @@ $(piece)-violinTwo.pdf: $(piece)-violinTwo.ly violinTwo.ily
 score: $(piece).pdf
 
 # Type `make parts' to generate all parts.
-# Type `make foo.pdf' to generate the part for instrument `foo'.
+# Type `make symphony-foo.pdf' to generate the part for instrument `foo'.
 # Example: `make symphony-cello.pdf'.
 .PHONY: parts
 parts: $(piece)-cello.pdf \
