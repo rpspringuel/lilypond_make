@@ -28,7 +28,7 @@ PDF :
 	mkdir PDF
 
 MIDI :
-	-mkdir MIDI
+	mkdir MIDI
 
 notes = \
   cello.ily \
