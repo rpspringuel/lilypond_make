@@ -41,7 +41,7 @@ PDF :
 	mkdir PDF
 
 MIDI :
-	-mkdir MIDI
+	mkdir MIDI
 
 # Type `make score' to generate the full score of all four
 # movements as one file.
