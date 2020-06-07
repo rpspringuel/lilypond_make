@@ -15,13 +15,13 @@ The text of the Makefile is modified from what is provided there because what of
 Since the above linked page doesn't provide content for the various music files, we borrow that from [the documentation for the Orchestra Choir and Piano template](http://lilypond.org/doc/v2.20/Documentation/snippets/staff-notation#staff-notation-orchestra-choir-and-piano-template).  Since this template is presented as a single file template and does not contain an identical list of parts, we've had to modify it in the following ways:
 
  * We drop the parts present in the template but not in the Makefile example. The one deviation from this is the oboe (present in the Makefile example but not the template), which has been replaced by the clarinet (which is in the template, but not in the Makefile example).
- * The contents of the template have been split into multiple files according the the scheme in the Makefile example: musical content into various files in the notes folder, the global staff-size and paper definitions to SymphonDefs.ily, and the creation of individual scores for each part and several pseudo-movements (which are simply duplications of the whole score).
+ * The contents of the template have been split into multiple files according the the scheme in the Makefile example: musical content into various files in the notes folder, the global staff-size and paper definitions to symphonyDefs.ily, and the creation of individual scores for each part and several pseudo-movements (which are simply duplications of the whole score).
  * A \midi block has been added to the all the score and part files so that the example creates the MIDI files expected by the Makefile.
 
 
 ## Modifications
 
-The original Makefile example from the documentation contains an incomplete accounting of the dependencies for the various scores (in particular, SymphonyDefs.ily is never mentioned).  Further, the lists are completely manual, which for a larger project (or one with significant collaboration) would be prone to an accumulation of errors.
+The original Makefile example from the documentation contains an incomplete accounting of the dependencies for the various scores (in particular, symphonyDefs.ily is never mentioned).  Further, the lists are completely manual, which for a larger project (or one with significant collaboration) would be prone to an accumulation of errors.
 
 The GNUmake_dependencies branch demonstrates how a modified Makefile can automatically generate complete dependency lists for each score.
 
