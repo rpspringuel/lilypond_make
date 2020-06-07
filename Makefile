@@ -7,6 +7,8 @@ LILY_CMD = lilypond -ddelete-intermediate-files \
 # The suffixes used in this Makefile.
 .SUFFIXES: .ly .ily .pdf .midi
 
+.DEFAULT_GOAL = score
+
 # Input and output files are searched in the directories listed in
 # the VPATH variable.  All of them are subdirectories of the current
 # directory (given by the GNU make variable `CURDIR').
