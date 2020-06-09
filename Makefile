@@ -1,27 +1,27 @@
 # the name stem of the output files
-piece = symphony
+piece := symphony
 # The command to run lilypond
-LILY_CMD = lilypond -ddelete-intermediate-files \
+LILY_CMD := lilypond -ddelete-intermediate-files \
                     -dno-point-and-click -dno-strip-output-dir
 
 # The suffixes used in this Makefile.
 .SUFFIXES: .ly .ily .dly .pdf .midi
 
-.DEFAULT_GOAL = score
+.DEFAULT_GOAL := score
 
 # Input and output files are searched in the directories listed in
 # the VPATH variable.  All of them are subdirectories of the current
 # directory (given by the GNU make variable `CURDIR').
-VPATH = \
+VPATH := \
   $(CURDIR)/Scores \
   $(CURDIR)/PDF \
   $(CURDIR)/Parts \
   $(CURDIR)/Notes
 
-LY_parts = $(wildcard Parts/*.ly)
-LY_scores = $(wildcard Scores/*.ly)
+LY_parts := $(wildcard Parts/*.ly)
+LY_scores := $(wildcard Scores/*.ly)
 
-LY_all = $(LY_parts) $(LY_scores)
+LY_all := $(LY_parts) $(LY_scores)
 
 include $(LY_all:.ly=.dly)
 
