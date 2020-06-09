@@ -21,10 +21,10 @@ VPATH := \
   $(CURDIR)/Notes \
   $(CURDIR)/$(DEPDIR)
 
-LY_parts = $(wildcard Parts/*.ly)
-LY_scores = $(wildcard Scores/*.ly)
+LY_parts := $(wildcard Parts/*.ly)
+LY_scores := $(wildcard Scores/*.ly)
 
-LY_all = $(LY_parts) $(LY_scores)
+LY_all := $(LY_parts) $(LY_scores)
 
 DEPFILES := $(addsuffix .dly,$(notdir $(basename $(LY_all))))
 $(DEPFILES):
