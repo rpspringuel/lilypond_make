@@ -1,7 +1,7 @@
 # the name stem of the output files
-piece = symphony
+piece := symphony
 # The command to run lilypond
-LILY_CMD = lilypond -ddelete-intermediate-files \
+LILY_CMD := lilypond -ddelete-intermediate-files \
                     -dno-point-and-click --init with-deps.ly
 
 # The suffixes used in this Makefile.
@@ -9,7 +9,7 @@ LILY_CMD = lilypond -ddelete-intermediate-files \
 
 DEPDIR := deps
 
-.DEFAULT_GOAL = score
+.DEFAULT_GOAL := score
 
 # Input and output files are searched in the directories listed in
 # the VPATH variable.  All of them are subdirectories of the current
