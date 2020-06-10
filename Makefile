@@ -7,6 +7,9 @@ LILY_CMD := lilypond -ddelete-intermediate-files \
 # The suffixes used in this Makefile.
 .SUFFIXES: .ly .ily .pdf .midi
 
+PDFDIR := PDF/
+MIDIDIR := MIDI/
+
 .DEFAULT_GOAL := score
 
 # Input and output files are searched in the directories listed in
@@ -14,23 +17,24 @@ LILY_CMD := lilypond -ddelete-intermediate-files \
 # directory (given by the GNU make variable `CURDIR').
 VPATH := \
   $(CURDIR)/Scores \
-  $(CURDIR)/PDF \
   $(CURDIR)/Parts \
-  $(CURDIR)/Notes
+  $(CURDIR)/Notes \
+  $(CURDIR)/$(PDFDIR) \
+  $(CURDIR)/$(MIDIDIR)
 
 # The pattern rule to create PDF and MIDI files from a LY input file.
 # The .pdf output files are put into the `PDF' subdirectory, and the
 # .midi files go into the `MIDI' subdirectory.
-%.pdf %.midi &: %.ly | PDF MIDI
+%.pdf %.midi &: %.ly | $(PDFDIR) $(MIDIDIR)
 	$(LILY_CMD) $<
-	mv "$*.pdf" PDF/
-	mv "$*.midi" MIDI/
+	mv "$*.pdf" $(PDFDIR)/
+	mv "$*.midi" $(MIDIDIR)/
 
-PDF :
-	mkdir PDF
+$(PDFDIR) :
+	mkdir $(PDFDIR)
 
-MIDI :
-	mkdir MIDI
+$(MIDIDIR) :
+	mkdir $(MIDIDIR)
 
 notes := \
   cello.ily \
