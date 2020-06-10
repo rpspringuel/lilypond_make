@@ -7,7 +7,9 @@ LILY_CMD := lilypond -ddelete-intermediate-files \
 # The suffixes used in this Makefile.
 .SUFFIXES: .ly .ily .dly .pdf .midi
 
-DEPDIR := deps
+DEPDIR := deps/
+PDFDIR := PDF/
+MIDIDIR := MIDI/
 
 .DEFAULT_GOAL := score
 
@@ -16,9 +18,10 @@ DEPDIR := deps
 # directory (given by the GNU make variable `CURDIR').
 VPATH := \
   $(CURDIR)/Scores \
-  $(CURDIR)/PDF \
   $(CURDIR)/Parts \
   $(CURDIR)/Notes \
+  $(CURDIR)/$(PDFDIR) \
+  $(CURDIR)/$(MIDIDIR) \
   $(CURDIR)/$(DEPDIR)
 
 LY_parts := $(wildcard Parts/*.ly)
@@ -37,20 +40,20 @@ include $(wildcard $(addprefix $(DEPDIR)/,$(DEPFILES)))
 # so that the next run of make can accurately determine if the target
 # is out of date.  These prerequisites are saved in a dly file which
 # is placed in the `deps' subdirectory.
-%.pdf %.midi &: %.ly %.dly | PDF MIDI $(DEPDIR)
+%.pdf %.midi &: %.ly %.dly | $(PDFDIR) $(MIDIDIR) $(DEPDIR)
 	$(LILY_CMD) $<
 	sed -i.temp '1s,^,$(*F).midi ,' $(*F).dly
 	rm $(*F).dly.temp
 	mv "$(*F).dly" $(DEPDIR)/
-	mv "$(*F).pdf" PDF/
-	mv "$(*F).midi" MIDI/
-	touch PDF/$(*F).pdf MIDI/$(*F).midi
+	mv "$(*F).pdf" $(PDFDIR)/
+	mv "$(*F).midi" $(MIDIDIR)/
+	touch $(PDFDIR)/$(*F).pdf $(MIDIDIR)/$(*F).midi
 
-PDF :
-	mkdir PDF
+$(PDFDIR) :
+	mkdir $(PDFDIR)
 
-MIDI :
-	mkdir MIDI
+$(MIDIDIR) :
+	mkdir $(MIDIDIR)
 
 $(DEPDIR) :
 	mkdir $(DEPDIR)	
