@@ -69,3 +69,7 @@ movements: $(piece)I.pdf \
            $(piece)IV.pdf
 
 all: score parts movements
+
+clean:
+	rm -rf $(PDFDIR)
+	rm -rf $(MIDIDIR)
