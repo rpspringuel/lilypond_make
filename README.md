@@ -5,7 +5,7 @@ A working repository which demonstrates how to use makefiles with LilyPond
 ## Sources
 
 We're following the structure and layout provided by [the LilyPond Documentation on using make and makefiles with Lilypond](http://lilypond.org/doc/v2.20/Documentation/usage/make-and-makefiles)
-The text of the Makefile is modified from what is provided there because what of system specific features of that Makefile:
+The text of the Makefile is modified from what is provided there because of system specific features of that Makefile:
 
  * The CPU_CORES variable (and the associated job-count flag in the LilyPond command) is dropped.  Querying for the number of cores like this is specific to Linux distributions and doesn't port to macOS.  Further, make will not actually pass multiple files to LilyPond with a single command so LilyPond itself cannot take advantage of multiple cores to run multiple jobs at once.  Instead, parallelization should be invoked by using the `-j` flag for make.
  * Targets for the PDF and MIDI folders have been added and they are set as order-only prerequisites to the pattern target used to create scores.  This is so that these folders are created if they don't exist (which would be the default case for a fresh clone of this repository), but their last modified date is not used to determine if any score targets are out-of-date.
