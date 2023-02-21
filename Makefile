@@ -86,3 +86,8 @@ all: score parts movements
 .PHONY: test
 test:
 	@echo $(DEPFILES)
+
+clean:
+	rm -rf $(PDFDIR)
+	rm -rf $(MIDIDIR)
+	rm -rf $(DEPDIR)
