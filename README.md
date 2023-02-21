@@ -1,6 +1,9 @@
 # lilypond_make
 A working repository which demonstrates how to use makefiles with LilyPond
 
+## Obsolete
+Due to changes to the LilyPond backend in version 2.23.5, this branch is considered obsolete.  It will not work with any newer version of LilyPond.  Those using a newer version of LilyPond and want automatic dependency handling, should make use of the template on the mad-scientist_dependencies branch.
+
 
 ## Sources
 
