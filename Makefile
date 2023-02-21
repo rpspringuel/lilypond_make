@@ -40,9 +40,13 @@ include $(wildcard $(addprefix $(DEPDIR)/,$(DEPFILES)))
 # so that the next run of make can accurately determine if the target
 # is out of date.  These prerequisites are saved in a dly file which
 # is placed in the `deps' subdirectory.
+# Starting with version 2.23.5, LilyPond no longer has easy access to
+# the target output formats, so the dly file that results from compiling
+# using with-deps.ly is incomplete.  The SED command in this recipe completes
+# those dly files by adding the names of the pdf and midi targets.
 %.pdf %.midi &: %.ly %.dly | $(PDFDIR) $(MIDIDIR) $(DEPDIR)
 	$(LILY_CMD) $<
-	sed -i.temp '1s,^,$(*F).midi ,' $(*F).dly
+	sed -i.temp '1s,^,$(*F).pdf $(*F).midi,' $(*F).dly
 	rm $(*F).dly.temp
 	mv "$(*F).dly" $(DEPDIR)/
 	mv "$(*F).pdf" $(PDFDIR)/
